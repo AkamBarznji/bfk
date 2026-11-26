@@ -11,9 +11,10 @@ export const metadata: Metadata = {
   openGraph: { title: 'British Friends of Kurdistan', description: 'An independent platform for dialogue, cultural exchange and commercial engagement between the United Kingdom and Kurdistan.', type: 'website', locale: 'en_GB', siteName: 'British Friends of Kurdistan', images: [{ url: '/images/og-image.jpg', width: 1200, height: 630, alt: 'British Friends of Kurdistan' }] },
   twitter: { card: 'summary_large_image', title: 'British Friends of Kurdistan', description: 'Dialogue, cultural exchange and commercial engagement between the United Kingdom and Kurdistan.', images: ['/images/og-image.jpg'] },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: [{ url: '/favicon.ico', sizes: '48x48' }, { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' }, { url: '/icon-192.png', sizes: '192x192', type: 'image/png' }],
+    apple: '/apple-touch-icon.png',
   },
+  manifest: '/manifest.webmanifest',
 };
 
 export const viewport: Viewport = { themeColor: '#0E1F3A', width: 'device-width', initialScale: 1 };

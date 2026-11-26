@@ -6,7 +6,7 @@ import { Menu } from 'lucide-react';
 import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetDescription, SheetClose } from '@/components/ui/sheet';
 const links = [{href:'/', label:'Home'}, {href:'/about', label:'About BFK'}, {href:'/our-work', label:'Our work'}, {href:'/events', label:'Events'}, {href:'/contact', label:'Get in touch'}];
 // Display the supplied artwork unchanged, framing only its excess white margins with CSS.
-export function Wordmark() { return <span className="official-logo"><img src="/images/bfk-official-logo.jpeg" width="1536" height="768" alt="British Friends of Kurdistan — BFK" /></span>; }
+export function Wordmark() { return <span className="official-logo"><img src="/images/bfk-logo.webp" width="480" height="269" alt="British Friends of Kurdistan — BFK" /></span>; }
 export default function Header() {
   const pathname = usePathname(); const [open, setOpen] = useState(false); const [scrolled, setScrolled] = useState(false);
   useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 8); onScroll(); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll); }, []);
