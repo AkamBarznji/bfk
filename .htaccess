@@ -1,0 +1,15 @@
+# Apache: serve /about as about.html, real 404 page, and hide source files.
+Options -Indexes
+ErrorDocument 404 /404.html
+RewriteEngine On
+RewriteRule ^(source|\.git)(/|$) - [R=404,L]
+RewriteRule ^(HANDOVER\.md|README\.md)$ - [R=404,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
