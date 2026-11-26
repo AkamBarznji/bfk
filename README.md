@@ -1,4 +1,4 @@
-# iStyle Barbers website
+# Castle Barbers website
 
 PHP site. All shop details (phone, email, hours, prices, booking link, social links)
 live in `includes/config.php`. Leave a value empty to hide it on the site.

@@ -1,11 +1,8 @@
 <?php /** @var array $site */ ?>
 <footer class="site-footer">
   <div class="wrap">
-    <p class="footer-wordmark" aria-hidden="true">iStyle Barbers</p>
+    <p class="footer-wordmark" aria-hidden="true"><?= e($site['name']) ?></p>
     <div class="footer-grid">
-      <div class="footer-logo">
-        <img src="/images/logo-white-sm.png" width="320" height="277" alt="<?= e($site['name']) ?>, hair for men" loading="lazy">
-      </div>
       <div>
         <h2>Visit</h2>
         <p><?= e($site['street']) ?><br><?= e($site['city'] . ' ' . $site['postcode']) ?></p>

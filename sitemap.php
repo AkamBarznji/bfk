@@ -13,7 +13,6 @@ echo '<?xml version="1.0" encoding="UTF-8"?>', "\n";
     <lastmod><?= date('Y-m-d', max((int) @filemtime($file), (int) @filemtime(__DIR__ . '/includes/config.php'))) ?></lastmod>
 <?php if ($path === '/'): ?>
     <image:image><image:loc><?= e($base) ?>/images/hero.webp</image:loc></image:image>
-    <image:image><image:loc><?= e($base) ?>/images/logo-white.png</image:loc></image:image>
 <?php endif; ?>
   </url>
 <?php endforeach; ?>

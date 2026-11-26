@@ -25,15 +25,15 @@ $err = $contact['errors'];
       <img src="/images/hero.webp" width="2400" height="1600" alt="" fetchpriority="high">
     </picture>
     <div class="wrap hero-inner">
-      <p class="hero-place"><?= e($site['street']) ?>, <?= e($site['area']) ?></p>
+      <p class="hero-place"><?= e($site['street']) ?>, <?= e(explode(' ', $site['postcode'])[0]) ?></p>
       <?php if ($status = open_status($site)): ?>
         <p class="open-status <?= $status['open'] ? 'is-open' : 'is-closed' ?>"><span class="open-dot" aria-hidden="true"></span><?= e($status['text']) ?></p>
       <?php endif; ?>
       <h1 id="hero-title" class="hero-title">
-        <span class="hero-line">iStyle</span>
-        <span class="hero-line">Barbers</span>
+        <span class="hero-line"><?= e($site['name_first']) ?></span>
+        <span class="hero-line"><?= e($site['name_second']) ?></span>
       </h1>
-      <p class="hero-lede">Barber in Streatham, south London. Sharp cuts, clean fades and proper beard work on Streatham High Road.</p>
+      <p class="hero-lede">Barber in <?= e($site['area_long']) ?>. Sharp cuts, clean fades and proper beard work on <?= e($site['road']) ?>.</p>
       <div class="actions">
         <?php if ($site['booking_url'] !== ''): ?>
           <a class="button" href="<?= e($site['booking_url']) ?>" rel="noopener">Book an appointment</a>
@@ -48,9 +48,9 @@ $err = $contact['errors'];
 
     <div class="street-sign" aria-hidden="true">
       <span class="street-borough"><?= e($site['borough']) ?></span>
-      <span class="street-name">Streatham High Road</span>
-      <span class="street-district">SW16</span>
-      <span class="street-number">71</span>
+      <span class="street-name"><?= e($site['road']) ?></span>
+      <span class="street-district"><?= e(explode(' ', $site['postcode'])[0]) ?></span>
+      <span class="street-number"><?= e($site['number']) ?></span>
     </div>
   </section>
 
@@ -83,7 +83,7 @@ $err = $contact['errors'];
       </figure>
       <div class="intro-copy">
         <h2 id="intro-title">Your barber on the High Road.</h2>
-        <p>Walk down Streatham High Road and you'll find us at number 71. We cut men's and boys' hair with care, from a quick line-up to a full skin fade and beard shape.</p>
+        <p>Walk down <?= e($site['road']) ?> and you'll find us at number <?= e($site['number']) ?>. We cut men's and boys' hair with care, from a quick line-up to a full skin fade and beard shape.</p>
         <div class="actions intro-actions">
           <a class="button dark" href="#services">See our services</a>
           <a class="text-link" href="#gallery">View the gallery</a>
@@ -97,7 +97,7 @@ $err = $contact['errors'];
       <div class="section-head">
         <div>
           <h2 id="services-title">Services</h2>
-          <p class="services-intro">Men's and boys' haircuts, fades, beard trims and shaves at 71 Streatham High Road.</p>
+          <p class="services-intro">Men's and boys' haircuts, fades, beard trims and shaves at <?= e($site['street']) ?>.</p>
         </div>
         <?php if (!array_filter(array_column($site['services'], 'price'))): ?>
           <p>Ask in the shop for today's prices.</p>

@@ -70,16 +70,8 @@ a { color: inherit; }
 .site-header { position: fixed; inset: 0 0 auto; z-index: 40; color: var(--white); transition: background .3s ease, box-shadow .3s ease; }
 .site-header.is-solid, .page .site-header { background: rgba(22,24,27,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 84px; }
-.brand { display: inline-flex; align-items: center; text-decoration: none; }
-.brand-logo { height: 70px; width: auto; transition: height .3s var(--ease); }
-.is-solid .brand-logo { height: 58px; }
-.footer-logo img { width: 150px; height: auto; }
-.brand-mark {
-  display: grid; place-items: center; width: 42px; height: 42px;
-  background: var(--white); color: var(--ink); border-radius: 6px;
-  font-weight: 900; font-stretch: 68%; font-size: 21px; padding-bottom: 6px;
-  box-shadow: inset 0 0 0 2px var(--white), inset 0 0 0 4px var(--ink), inset 0 -9px 0 var(--red);
-}
+.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark { width: 44px; height: 44px; border-radius: 11px; }
 .brand-name { font-weight: 800; font-stretch: 72%; font-size: 26px; letter-spacing: -.005em; }
 .nav { display: flex; align-items: center; gap: 4px; font-size: 16px; font-weight: 600; }
 .nav a { padding: 10px 14px; border-radius: 999px; text-decoration: none; transition: background .2s ease; }
@@ -118,7 +110,7 @@ a { color: inherit; }
 .street-borough { color: var(--red); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
 .street-name { color: var(--ink); font-weight: 800; font-stretch: 66%; font-size: clamp(30px, 3vw, 46px); line-height: 1; white-space: nowrap; }
 .street-district { color: var(--red); font-weight: 800; font-stretch: 66%; font-size: clamp(24px, 2.3vw, 34px); line-height: 1; }
-.street-number { position: absolute; right: -22px; top: -22px; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--red); color: var(--white); font-weight: 900; font-stretch: 66%; font-size: 30px; transform: rotate(8deg); }
+.street-number { position: absolute; right: -26px; top: -26px; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: var(--red); color: var(--white); font-weight: 900; font-stretch: 66%; font-size: 30px; transform: rotate(8deg); }
 
 @keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
 @keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }

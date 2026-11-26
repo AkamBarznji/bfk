@@ -1,20 +1,27 @@
 <?php
-// iStyle Barbers: all shop details live here.
+// Castle Barbers: all shop details live here.
 // Leave a value as '' (empty) to hide it on the website.
 
 return [
-    'name'     => 'iStyle Barbers',
-    'street'   => '71 Streatham High Road',
+    'name'     => 'Castle Barbers',
+    'name_first' => 'Castle',   // hero title, line 1
+    'name_second' => 'Barbers', // hero title, line 2 (outlined)
+    'number'   => '308',
+    'road'     => 'Walworth Road',
+    'street'   => '308 Walworth Road',
     'city'     => 'London',
-    'postcode' => 'SW16 1PH',
-    'area'     => 'Streatham',
-    'borough'  => 'London Borough of Lambeth',
-    'lat'      => 51.4312477,
-    'lng'      => -0.1290934,
-    'maps_url' => 'https://maps.app.goo.gl/u2WsGJebPNdz1H3V6',
+    'postcode' => 'SE17 2NA',
+    'area'     => 'Walworth',
+    'area_long' => 'Walworth, near Elephant & Castle',
+    'borough'  => 'London Borough of Southwark',
+    'geo_region' => 'GB-SWK',
+    'nearby'   => ['Elephant and Castle', 'Kennington', 'Camberwell', 'Borough', 'Bermondsey'],
+    'lat'      => 51.4865108,
+    'lng'      => -0.0948609,
+    'maps_url' => 'https://maps.app.goo.gl/1Msx4ULX4FCzDp9q7',
 
     // Contact. Example: '+44 20 1234 5678'
-    'phone'     => '07377 636265',
+    'phone'     => '020 7701 8800',
     // Enquiries from the contact form go to this address. Empty = form hidden.
     'email'     => '',
     // Online booking link (Fresha, Booksy, etc.). Empty = "Book" buttons hidden.
@@ -23,16 +30,16 @@ return [
     'tiktok'      => '',
     'facebook'    => '',
 
-    // Opening hours. Example: 'Monday' => '9:00 – 19:00', 'Sunday' => 'Closed'.
+    // Opening hours. Example: 'Monday' => '', 'Sunday' => 'Closed'.
     // If every day is empty, the hours table is hidden.
     'hours' => [
-        'Monday'    => '9:00 – 20:00',
-        'Tuesday'   => '9:00 – 20:00',
-        'Wednesday' => '9:00 – 20:00',
-        'Thursday'  => '9:00 – 20:00',
-        'Friday'    => '9:00 – 20:00',
-        'Saturday'  => '9:00 – 20:00',
-        'Sunday'    => '10:00 – 17:30',
+        'Monday'    => '',
+        'Tuesday'   => '',
+        'Wednesday' => '',
+        'Thursday'  => '',
+        'Friday'    => '',
+        'Saturday'  => '',
+        'Sunday'    => '',
     ],
 
     // Services. 'price' example: '£20'. Empty price = not shown.
