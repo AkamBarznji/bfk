@@ -69,8 +69,11 @@ a { color: inherit; }
 /* Header */
 .site-header { position: fixed; inset: 0 0 auto; z-index: 40; color: var(--white); transition: background .3s ease, box-shadow .3s ease; }
 .site-header.is-solid, .page .site-header { background: rgba(22,24,27,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
-.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 78px; }
-.brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 84px; }
+.brand { display: inline-flex; align-items: center; text-decoration: none; }
+.brand-logo { height: 70px; width: auto; transition: height .3s var(--ease); }
+.is-solid .brand-logo { height: 58px; }
+.footer-logo img { width: 150px; height: auto; }
 .brand-mark {
   display: grid; place-items: center; width: 42px; height: 42px;
   background: var(--white); color: var(--ink); border-radius: 6px;
@@ -234,7 +237,7 @@ a { color: inherit; }
   .menu-open .menu-lines { background: transparent; }
   .menu-open .menu-lines::before { transform: translateY(6px) rotate(45deg); }
   .menu-open .menu-lines::after { transform: translateY(-6px) rotate(-45deg); }
-  .nav { position: fixed; inset: 78px 0 auto; flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--gutter) 28px; background: var(--ink); transform: translateY(-120%); visibility: hidden; transition: transform .35s var(--ease), visibility .35s; }
+  .nav { position: fixed; inset: 84px 0 auto; flex-direction: column; align-items: stretch; gap: 0; padding: 12px var(--gutter) 28px; background: var(--ink); transform: translateY(-120%); visibility: hidden; transition: transform .35s var(--ease), visibility .35s; }
   .menu-open .nav { transform: none; visibility: visible; }
   .menu-open .site-header { background: var(--ink); }
   .nav a { padding: 16px 4px; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,.1); font-size: 22px; font-weight: 700; font-stretch: 80%; }
