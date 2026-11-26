@@ -4,10 +4,11 @@ import Header from '@/components/bfk/header';
 import Footer from '@/components/bfk/footer';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://new.kurdsforlabour.org.uk'),
   title: { default: 'British Friends of Kurdistan | Dialogue, exchange and engagement', template: '%s | British Friends of Kurdistan' },
   description: 'An independent London-based organisation advancing dialogue, cultural exchange and commercial engagement between the United Kingdom and Kurdistan.',
-  robots: { index: false, follow: false },
-  openGraph: { title: 'British Friends of Kurdistan', description: 'An independent platform for dialogue, cultural exchange and commercial engagement between the United Kingdom and Kurdistan.', type: 'website', locale: 'en_GB' },
+  robots: { index: true, follow: true },
+  openGraph: { title: 'British Friends of Kurdistan', description: 'An independent platform for dialogue, cultural exchange and commercial engagement between the United Kingdom and Kurdistan.', type: 'website', locale: 'en_GB', siteName: 'British Friends of Kurdistan' },
   twitter: { card: 'summary_large_image', title: 'British Friends of Kurdistan', description: 'Dialogue, cultural exchange and commercial engagement between the United Kingdom and Kurdistan.' },
   icons: {
     icon: "/favicon.svg",

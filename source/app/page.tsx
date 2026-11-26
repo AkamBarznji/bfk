@@ -1,6 +1,8 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { FocusAreas, ContactInvitation, EventList } from '@/components/bfk/content';
 import { copy } from '@/content/en';
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 export default function Home() {
   return <main id="main-content">
     <section className="hero" aria-labelledby="hero-title">

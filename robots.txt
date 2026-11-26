@@ -1,4 +1,6 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /launch-checklist
+Disallow: /source/
 
-# Private design preview. Review indexing rules before public launch.
+Sitemap: https://new.kurdsforlabour.org.uk/sitemap.xml

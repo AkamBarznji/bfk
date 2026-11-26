@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { copy } from '@/content/en';
 import { PageIntro, ContactInvitation } from '@/components/bfk/content';
-export const metadata: Metadata = { title:'Our work', description:'Explore BFK’s three areas of work: diplomatic and policy dialogue, culture and education, and trade and investment engagement.' };
+export const metadata: Metadata = {alternates:{canonical:'/our-work'}, title:'Our work', description:'Explore BFK’s three areas of work: diplomatic and policy dialogue, culture and education, and trade and investment engagement.' };
 // TO SUPPLY: These proposed programme descriptions are editorial placeholders for approval.
 const paragraphs=[
   ['Informed conversation begins with the opportunity to hear different perspectives. BFK provides a setting in which parliamentarians, policy specialists and other participants can discuss the issues shaping relations between the United Kingdom and Kurdistan.', 'Our programme is intended to include focused roundtables, parliamentary briefings and delegations. Each activity will bring the relevant people together around a clear subject, with space for questions and constructive exchange.'],
