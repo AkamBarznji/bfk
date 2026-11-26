@@ -3,6 +3,9 @@
   <div class="wrap">
     <p class="footer-wordmark" aria-hidden="true"><?= e($site['name']) ?></p>
     <div class="footer-grid">
+      <div class="footer-logo">
+        <img src="/images/logo-sm.png" width="320" height="421" alt="<?= e($site['name']) ?> logo" loading="lazy">
+      </div>
       <div>
         <h2>Visit</h2>
         <p><?= e($site['street']) ?><br><?= e($site['city'] . ' ' . $site['postcode']) ?></p>
@@ -12,6 +15,7 @@
       <div>
         <h2>Contact</h2>
         <?php if ($site['phone'] !== ''): ?><p><a href="<?= e(tel_link($site['phone'])) ?>"><?= e($site['phone']) ?></a></p><?php endif; ?>
+        <?php if (($site['phone2'] ?? '') !== ''): ?><p><a href="<?= e(tel_link($site['phone2'])) ?>"><?= e($site['phone2']) ?></a></p><?php endif; ?>
         <?php if ($site['email'] !== ''): ?><p><a href="/#contact">Send a message</a></p><?php endif; ?>
       </div>
       <?php endif; ?>

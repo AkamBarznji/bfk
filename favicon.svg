@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <defs><clipPath id="c"><rect x="2" y="2" width="60" height="60" rx="11"/></clipPath></defs>
-  <g clip-path="url(#c)">
-    <rect width="64" height="64" fill="#fff"/>
-    <rect y="49" width="64" height="15" fill="#d0202f"/>
-  </g>
-  <path fill="#16181b" fill-rule="evenodd" d="M13 49V20h7v6h5v-6h14v6h5v-6h7v29H13zm15 0v-9a4 4 0 0 1 8 0v9h-8z"/>
-  <rect x="2" y="2" width="60" height="60" rx="11" fill="none" stroke="#16181b" stroke-width="4"/>
-</svg>

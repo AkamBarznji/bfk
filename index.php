@@ -26,14 +26,19 @@ $err = $contact['errors'];
     </picture>
     <div class="wrap hero-inner">
       <p class="hero-place"><?= e($site['street']) ?>, <?= e(explode(' ', $site['postcode'])[0]) ?></p>
-      <?php if ($status = open_status($site)): ?>
-        <p class="open-status <?= $status['open'] ? 'is-open' : 'is-closed' ?>"><span class="open-dot" aria-hidden="true"></span><?= e($status['text']) ?></p>
-      <?php endif; ?>
+      <div class="hero-badges">
+        <?php if ($status = open_status($site)): ?>
+          <p class="open-status <?= $status['open'] ? 'is-open' : 'is-closed' ?>"><span class="open-dot" aria-hidden="true"></span><?= e($status['text']) ?></p>
+        <?php endif; ?>
+        <?php if ($site['rating'] !== ''): ?>
+          <a class="open-status rating-pill" href="<?= e($site['reviews_url']) ?>" rel="noopener"><span class="star" aria-hidden="true">★</span><?= e($site['rating']) ?> on Google<?= $site['reviews_count'] !== '' ? ' (' . e($site['reviews_count']) . ' reviews)' : '' ?></a>
+        <?php endif; ?>
+      </div>
       <h1 id="hero-title" class="hero-title">
         <span class="hero-line"><?= e($site['name_first']) ?></span>
         <span class="hero-line"><?= e($site['name_second']) ?></span>
       </h1>
-      <p class="hero-lede">Barber in <?= e($site['area_long']) ?>. Sharp cuts, clean fades and proper beard work on <?= e($site['road']) ?>.</p>
+      <p class="hero-lede"><?= e($site['tagline']) ?> at <?= e($site['street']) ?>, near Elephant &amp; Castle.</p>
       <div class="actions">
         <?php if ($site['booking_url'] !== ''): ?>
           <a class="button" href="<?= e($site['booking_url']) ?>" rel="noopener">Book an appointment</a>
@@ -66,6 +71,7 @@ $err = $contact['errors'];
       <a class="quick-item" href="<?= e(tel_link($site['phone'])) ?>">
         <span class="quick-label">Call the shop</span>
         <span class="quick-value big"><?= e($site['phone']) ?></span>
+        <?php if (($site['phone2'] ?? '') !== ''): ?><span class="quick-value">or <?= e($site['phone2']) ?></span><?php endif; ?>
       </a>
       <?php endif; ?>
       <a class="quick-item" href="<?= e($site['maps_url']) ?>" rel="noopener">
@@ -105,8 +111,10 @@ $err = $contact['errors'];
       </div>
       <ul class="service-grid">
         <?php foreach ($site['services'] as $service): ?>
-          <li class="service-card">
-            <img src="/images/<?= e($service['image']) ?>.webp"<?= img_size('/images/' . $service['image'] . '.webp') ?> alt="<?= e($service['name']) ?> at a barber shop" loading="lazy">
+          <li class="service-card<?= $service['image'] === '' ? ' no-photo' : '' ?>">
+            <?php if ($service['image'] !== ''): ?>
+              <img src="/images/<?= e($service['image']) ?>.webp"<?= img_size('/images/' . $service['image'] . '.webp') ?> alt="<?= e($service['name']) ?> at a barber shop" loading="lazy">
+            <?php endif; ?>
             <div class="service-body">
               <div class="service-top">
                 <h3><?= e($service['name']) ?></h3>
@@ -119,6 +127,26 @@ $err = $contact['errors'];
       </ul>
     </div>
   </section>
+
+  <?php if ($site['rating'] !== ''): ?>
+  <section id="reviews" class="reviews" aria-labelledby="reviews-title">
+    <div class="wrap reviews-inner">
+      <a class="rating-card" href="<?= e($site['reviews_url']) ?>" rel="noopener">
+        <span class="rating-number"><?= e($site['rating']) ?></span>
+        <span class="rating-stars" aria-hidden="true">★★★★★</span>
+        <span class="rating-count"><?= e($site['reviews_count']) ?> Google reviews</span>
+      </a>
+      <div class="reviews-copy">
+        <h2 id="reviews-title">Rated <?= e($site['rating']) ?> on Google</h2>
+        <p>What customers mention most in their reviews:</p>
+        <ul class="topics">
+          <?php foreach ($site['review_topics'] as $topic): ?><li><?= e($topic) ?></li><?php endforeach; ?>
+        </ul>
+        <a class="button dark" href="<?= e($site['reviews_url']) ?>" rel="noopener">Read the reviews on Google</a>
+      </div>
+    </div>
+  </section>
+  <?php endif; ?>
 
   <section id="gallery" class="gallery" aria-labelledby="gallery-title">
     <div class="wrap">
@@ -146,7 +174,7 @@ $err = $contact['errors'];
           <?= e($site['city'] . ' ' . $site['postcode']) ?>
         </address>
         <?php if ($site['phone'] !== ''): ?>
-          <p class="visit-phone"><a href="<?= e(tel_link($site['phone'])) ?>"><?= e($site['phone']) ?></a></p>
+          <p class="visit-phone"><a href="<?= e(tel_link($site['phone'])) ?>"><?= e($site['phone']) ?></a><?php if (($site['phone2'] ?? '') !== ''): ?><br><a href="<?= e(tel_link($site['phone2'])) ?>"><?= e($site['phone2']) ?></a><?php endif; ?></p>
         <?php endif; ?>
         <?php if (has_hours($site)): ?>
           <table class="hours">
