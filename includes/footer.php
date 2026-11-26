@@ -40,6 +40,13 @@
   </div>
 </footer>
 
+<?php if ($site['phone'] !== ''): ?>
+<nav class="action-bar" aria-label="Quick actions">
+  <a class="action-call" href="<?= e(tel_link($site['phone'])) ?>">Call</a>
+  <a class="action-map" href="<?= e($site['maps_url']) ?>" rel="noopener">Directions</a>
+</nav>
+<?php endif; ?>
+
 <dialog class="lightbox" data-lightbox aria-label="Photo">
   <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close photo">×</button>
   <img src="" alt="" data-lightbox-img>

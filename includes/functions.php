@@ -185,3 +185,22 @@ function img_size(string $path): string
     $size = is_file($file) ? @getimagesize($file) : false;
     return $size ? sprintf(' width="%d" height="%d"', $size[0], $size[1]) : '';
 }
+
+/** Short hours summary, e.g. ['Mon–Sat 9:00–20:00', 'Sun 10:00–17:30']. */
+function hours_summary(array $site): array
+{
+    $groups = [];
+    foreach ($site['hours'] as $day => $value) {
+        $value = trim($value) === '' ? 'Closed' : str_replace(' – ', '–', $value);
+        $last = count($groups) - 1;
+        if ($last >= 0 && $groups[$last]['value'] === $value) {
+            $groups[$last]['to'] = $day;
+        } else {
+            $groups[] = ['from' => $day, 'to' => $day, 'value' => $value];
+        }
+    }
+    return array_map(static function ($g) {
+        $days = substr($g['from'], 0, 3) . ($g['from'] !== $g['to'] ? '–' . substr($g['to'], 0, 3) : '');
+        return $days . ' ' . $g['value'];
+    }, $groups);
+}

@@ -54,19 +54,40 @@ $err = $contact['errors'];
     </div>
   </section>
 
+  <section class="quick-info" aria-label="Opening hours, phone and address">
+    <div class="wrap quick-grid">
+      <?php if (has_hours($site)): ?>
+      <a class="quick-item" href="#visit">
+        <span class="quick-label">Opening hours</span>
+        <?php foreach (hours_summary($site) as $line): ?><span class="quick-value"><?= e($line) ?></span><?php endforeach; ?>
+      </a>
+      <?php endif; ?>
+      <?php if ($site['phone'] !== ''): ?>
+      <a class="quick-item" href="<?= e(tel_link($site['phone'])) ?>">
+        <span class="quick-label">Call the shop</span>
+        <span class="quick-value big"><?= e($site['phone']) ?></span>
+      </a>
+      <?php endif; ?>
+      <a class="quick-item" href="<?= e($site['maps_url']) ?>" rel="noopener">
+        <span class="quick-label">Find us</span>
+        <span class="quick-value"><?= e($site['street']) ?></span>
+        <span class="quick-value"><?= e($site['city'] . ' ' . $site['postcode']) ?></span>
+      </a>
+    </div>
+  </section>
+
   <section class="intro" aria-labelledby="intro-title">
     <div class="wrap intro-inner">
       <figure class="intro-photo">
-        <img src="/images/chair.webp" width="1400" height="933" alt="Leather barber chair" loading="lazy">
+        <img src="/images/g1.webp" width="1000" height="1330" alt="Barber shaping a fade with clippers" loading="lazy">
       </figure>
       <div class="intro-copy">
         <h2 id="intro-title">Your barber on the High Road.</h2>
         <p>Walk down Streatham High Road and you'll find us at number 71. We cut men's and boys' hair with care, from a quick line-up to a full skin fade and beard shape.</p>
-        <dl class="facts">
-          <div><dt>Address</dt><dd><?= e($site['street']) ?></dd></div>
-          <div><dt>Postcode</dt><dd><?= e($site['postcode']) ?></dd></div>
-          <div><dt>Area</dt><dd><?= e($site['area']) ?>, south London</dd></div>
-        </dl>
+        <div class="actions intro-actions">
+          <a class="button dark" href="#services">See our services</a>
+          <a class="text-link" href="#gallery">View the gallery</a>
+        </div>
       </div>
     </div>
   </section>

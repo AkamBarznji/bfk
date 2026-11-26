@@ -46,5 +46,5 @@ return [
         ['name' => "Kids' haircut", 'price' => '', 'image' => 'kids',    'text' => 'Cuts for younger customers, done with patience.'],
     ],
 
-    'gallery' => ['g1', 'g2', 'g3', 'g4', 'g5', 'g7'],
+    'gallery' => ['g3', 'g2', 'chair', 'g4', 'g5', 'g7'],
 ];
