@@ -14,7 +14,7 @@ return [
     'maps_url' => 'https://maps.app.goo.gl/u2WsGJebPNdz1H3V6',
 
     // Contact. Example: '+44 20 1234 5678'
-    'phone'     => '',
+    'phone'     => '07377 636265',
     // Enquiries from the contact form go to this address. Empty = form hidden.
     'email'     => '',
     // Online booking link (Fresha, Booksy, etc.). Empty = "Book" buttons hidden.
@@ -25,13 +25,13 @@ return [
     // Opening hours. Example: 'Monday' => '9:00 – 19:00', 'Sunday' => 'Closed'.
     // If every day is empty, the hours table is hidden.
     'hours' => [
-        'Monday'    => '',
-        'Tuesday'   => '',
-        'Wednesday' => '',
-        'Thursday'  => '',
-        'Friday'    => '',
-        'Saturday'  => '',
-        'Sunday'    => '',
+        'Monday'    => '9:00 – 20:00',
+        'Tuesday'   => '9:00 – 20:00',
+        'Wednesday' => '9:00 – 20:00',
+        'Thursday'  => '9:00 – 20:00',
+        'Friday'    => '9:00 – 20:00',
+        'Saturday'  => '9:00 – 20:00',
+        'Sunday'    => '10:00 – 17:30',
     ],
 
     // Services. 'price' example: '£20'. Empty price = not shown.

@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+date_default_timezone_set('Europe/London');
+
 $site = require __DIR__ . '/config.php';
 
 function e(?string $value): string
