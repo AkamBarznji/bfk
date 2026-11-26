@@ -35,7 +35,6 @@
     </div>
     <div class="footer-bottom">
       <p>© <?= date('Y') ?> <?= e($site['name']) ?></p>
-      <p>Photography: <a href="https://unsplash.com/license" rel="noopener">Unsplash</a></p>
     </div>
   </div>
 </footer>
