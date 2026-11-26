@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from '@/components/bfk/link';
 import { Landmark, BookOpen, Building2, CalendarDays } from 'lucide-react';
 import { copy } from '@/content/en';
 import events from '@/content/events.json';

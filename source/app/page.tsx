@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import Link from '@/components/bfk/link';
 import { FocusAreas, ContactInvitation, EventList } from '@/components/bfk/content';
 import { copy } from '@/content/en';
 export const metadata: Metadata = { alternates: { canonical: '/' } };
