@@ -71,6 +71,7 @@ if ($sameAs) { $schema['sameAs'] = $sameAs; }
 <link rel="shortcut icon" href="/favicon.ico?v=4">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/zillaslab-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/styles.css?v=<?= e((string) @filemtime(__DIR__ . '/../styles.css')) ?>">
 <script type="application/ld+json"><?= json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?></script>
 </head>
@@ -80,7 +81,8 @@ if ($sameAs) { $schema['sameAs'] = $sameAs; }
 <header class="site-header" data-header>
   <div class="wrap header-inner">
     <a class="brand" href="/" aria-label="<?= e($site['name']) ?> home">
-      <img class="brand-logo" src="/images/logo-sm.png" width="320" height="421" alt="<?= e($site['name']) ?> logo">
+      <img class="brand-badge" src="/images/logo-badge.png" width="164" height="160" alt="">
+      <span class="brand-name"><?= e($site['name']) ?></span>
     </a>
     <nav class="nav" id="site-nav" aria-label="Main">
       <a href="/#services">Services</a>

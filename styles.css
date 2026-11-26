@@ -1,4 +1,11 @@
 @font-face {
+  font-family: "Zilla Slab";
+  src: url("/fonts/zillaslab-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Archivo";
   src: url("/fonts/archivo.woff2") format("woff2");
   font-weight: 400 900;
@@ -39,13 +46,13 @@ img { display: block; max-width: 100%; }
 h1, h2, h3 {
   margin: 0;
   color: var(--ink);
-  font-weight: 800;
-  font-stretch: 70%;
-  line-height: .95;
-  letter-spacing: -.01em;
+  font-family: "Zilla Slab", Rockwell, Georgia, serif;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -.015em;
   text-wrap: balance;
 }
-h2 { font-size: clamp(52px, 8vw, 120px); }
+h2 { font-size: clamp(46px, 6.4vw, 96px); }
 p { margin: 0; max-width: 62ch; }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--brand-deep); outline-offset: 3px; }
@@ -74,10 +81,10 @@ a { color: inherit; }
 .site-header.is-solid, .page .site-header { background: rgba(22,24,27,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.08); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 84px; }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand-logo { height: 64px; width: auto; transition: height .3s var(--ease); filter: drop-shadow(0 0 10px rgba(54,224,241,.35)); }
-.is-solid .brand-logo { height: 54px; }
+.brand-badge { height: 48px; width: auto; filter: drop-shadow(0 0 8px rgba(54,224,241,.45)); transition: height .3s var(--ease); }
+.is-solid .brand-badge { height: 42px; }
 .footer-logo img { width: 120px; height: auto; filter: drop-shadow(0 0 14px rgba(54,224,241,.3)); }
-.brand-name { font-weight: 800; font-stretch: 72%; font-size: 26px; letter-spacing: -.005em; }
+.brand-name { font-family: "Zilla Slab", Rockwell, Georgia, serif; font-weight: 700; font-size: 24px; letter-spacing: .04em; text-transform: uppercase; color: var(--brand); text-shadow: 0 0 12px rgba(54,224,241,.45); }
 .nav { display: flex; align-items: center; gap: 4px; font-size: 16px; font-weight: 600; }
 .nav a { padding: 10px 14px; border-radius: 999px; text-decoration: none; transition: background .2s ease; }
 .nav a:hover { background: rgba(255,255,255,.12); }
@@ -98,10 +105,11 @@ a { color: inherit; }
 .is-open .open-dot { background: #3ddc84; box-shadow: 0 0 0 0 rgba(61,220,132,.6); animation: pulse 2s ease-out infinite; }
 @keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(61,220,132,0); } 100% { box-shadow: 0 0 0 0 rgba(61,220,132,0); } }
 .services-intro { color: var(--mist); margin-top: 18px; font-size: 19px; }
-.hero-title { margin: 22px 0 0; color: var(--white); font-weight: 900; font-stretch: 62%; font-size: clamp(88px, 17vw, 250px); line-height: .82; letter-spacing: -.02em; }
-.hero-line { display: block; padding-bottom: .04em; animation: rise .9s var(--ease) both; }
-.hero-line:nth-child(2) { color: transparent; -webkit-text-stroke: 2px var(--white); animation-delay: .12s; }
-.hero-lede { margin: 30px 0 38px; font-size: clamp(19px, 1.7vw, 23px); color: #dfe2e5; max-width: 30ch; }
+.hero-title { margin: 26px 0 0; font-size: clamp(64px, 11.5vw, 184px); line-height: .9; letter-spacing: .01em; text-transform: uppercase; color: #dffcff;
+  text-shadow: 0 0 4px rgba(223,252,255,.9), 0 0 14px rgba(54,224,241,.9), 0 0 34px rgba(54,224,241,.6), 0 0 80px rgba(54,224,241,.35); }
+.hero-line { display: block; padding-bottom: .02em; animation: neon-on 1.6s linear both; }
+.hero-line:nth-child(2) { animation-delay: .35s; }
+.hero-lede { margin: 30px 0 38px; font-size: clamp(19px, 1.7vw, 23px); color: #dfe2e5; max-width: 36ch; }
 
 /* The street sign: identity anchor */
 .street-sign {
@@ -118,6 +126,14 @@ a { color: inherit; }
 .street-number { position: absolute; right: -26px; top: -26px; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: var(--red); color: var(--white); font-weight: 900; font-stretch: 66%; font-size: 30px; transform: rotate(8deg); }
 
 @keyframes settle { from { transform: scale(1.08); } to { transform: scale(1); } }
+@keyframes neon-on {
+  0%, 8% { opacity: .08; text-shadow: none; }
+  10% { opacity: 1; }
+  13% { opacity: .15; text-shadow: none; }
+  20% { opacity: 1; }
+  23% { opacity: .3; text-shadow: none; }
+  30%, 100% { opacity: 1; }
+}
 @keyframes rise { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: none; } }
 @keyframes hang { from { opacity: 0; transform: translateY(-30px) rotate(-8deg); } to { opacity: 1; transform: rotate(-2deg); } }
 
@@ -191,7 +207,7 @@ a { color: inherit; }
 
 /* Visit */
 .visit { background: var(--brand); color: var(--ink); padding-block: clamp(80px, 11vw, 150px); }
-.visit h2 { color: var(--ink); font-size: clamp(52px, 7vw, 110px); }
+.visit h2 { color: var(--ink); font-size: clamp(44px, 5.4vw, 84px); }
 .visit-inner { display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(36px, 6vw, 90px); align-items: center; }
 .visit address { font-style: normal; color: var(--ink); font-size: clamp(24px, 2.2vw, 30px); line-height: 1.35; margin: 30px 0; font-weight: 600; }
 .visit-phone { margin-bottom: 24px; font-size: 26px; font-weight: 800; color: var(--ink); line-height: 1.4; }
@@ -233,13 +249,13 @@ a { color: inherit; }
 .prose h2 { font-size: clamp(30px, 3vw, 40px); margin: 40px 0 12px; }
 .prose p { font-size: 19px; }
 .not-found { padding-block: 40px; }
-.not-found-code { font-weight: 900; font-stretch: 62%; font-size: clamp(120px, 22vw, 280px); line-height: .8; color: var(--brand-ink); }
+.not-found-code { font-family: "Zilla Slab", Rockwell, Georgia, serif; font-weight: 700; font-size: clamp(120px, 22vw, 280px); line-height: .8; color: var(--brand-ink); }
 .not-found h1 { font-size: clamp(44px, 6vw, 80px); margin-top: 20px; }
 .not-found > p { margin: 20px 0 32px; font-size: 20px; }
 
 /* Footer */
 .site-footer { background: var(--ink); color: var(--mist); padding-top: clamp(60px, 8vw, 110px); overflow-x: clip; }
-.site-footer .footer-wordmark { max-width: none; margin: 0 0 clamp(40px, 6vw, 80px); color: transparent; -webkit-text-stroke: 1.5px rgba(255,255,255,.35); font-weight: 900; font-stretch: 62%; font-size: clamp(64px, 13.5vw, 210px); line-height: .85; white-space: nowrap; }
+.site-footer .footer-wordmark { max-width: none; margin: 0 0 clamp(40px, 6vw, 80px); color: transparent; -webkit-text-stroke: 1.5px rgba(54,224,241,.45); font-family: "Zilla Slab", Rockwell, Georgia, serif; font-weight: 700; font-size: clamp(48px, 10vw, 156px); line-height: .9; white-space: nowrap; text-transform: uppercase; letter-spacing: .02em; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; padding-bottom: 48px; }
 .site-footer h2 { font-size: 14px; font-stretch: 100%; font-weight: 700; color: var(--white); margin-bottom: 14px; letter-spacing: 0; line-height: 1.4; }
 .site-footer p { font-size: 16px; margin-bottom: 6px; }
@@ -288,7 +304,6 @@ a { color: inherit; }
   .brand-name { font-size: 22px; }
   .hero-inner { padding-bottom: 110px; }
   .quick-info { margin-top: -48px; }
-  .hero-line:nth-child(2) { -webkit-text-stroke-width: 1.5px; }
   .actions .button { flex: 1 1 100%; }
   .service-grid { grid-template-columns: 1fr; }
   .service-card, .service-card:nth-child(n) { grid-column: auto; min-height: 380px; }
@@ -358,7 +373,7 @@ a { color: inherit; }
 .reviews-inner { display: grid; grid-template-columns: minmax(260px, .7fr) 1.3fr; gap: clamp(32px, 6vw, 90px); align-items: center; }
 .rating-card { display: grid; justify-items: start; gap: 6px; padding: clamp(28px, 4vw, 48px); border-radius: 18px; background: var(--ink); color: var(--white); text-decoration: none; box-shadow: 0 30px 60px -30px rgba(22,24,27,.55); transition: transform .3s var(--ease); }
 .rating-card:hover { transform: translateY(-4px); }
-.rating-number { font-weight: 900; font-stretch: 62%; font-size: clamp(110px, 12vw, 170px); line-height: .85; }
+.rating-number { font-family: "Zilla Slab", Rockwell, Georgia, serif; font-weight: 700; font-size: clamp(100px, 11vw, 160px); line-height: .85; color: var(--brand); text-shadow: 0 0 24px rgba(54,224,241,.4); }
 .rating-stars { color: #ffc93c; font-size: 28px; letter-spacing: 4px; }
 .rating-count { color: var(--mist); font-weight: 600; }
 .reviews-copy h2 { font-size: clamp(44px, 5.5vw, 84px); }

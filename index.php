@@ -38,7 +38,7 @@ $err = $contact['errors'];
         <span class="hero-line"><?= e($site['name_first']) ?></span>
         <span class="hero-line"><?= e($site['name_second']) ?></span>
       </h1>
-      <p class="hero-lede"><?= e($site['tagline']) ?> at <?= e($site['street']) ?>, near Elephant &amp; Castle.</p>
+      <p class="hero-lede"><?= e($site['tagline']) ?> at <?= str_replace(' ', '&nbsp;', e($site['street'])) ?>, near Elephant&nbsp;&amp;&nbsp;Castle.</p>
       <div class="actions">
         <?php if ($site['booking_url'] !== ''): ?>
           <a class="button" href="<?= e($site['booking_url']) ?>" rel="noopener">Book an appointment</a>
