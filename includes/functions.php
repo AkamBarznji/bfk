@@ -123,3 +123,65 @@ function handle_contact(array $site): array
     }
     return $result;
 }
+
+/** Base URL of the current site, e.g. https://example.com (no trailing slash). */
+function base_url(): string
+{
+    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https');
+    $host = preg_replace('/[^a-z0-9.\-:]/i', '', $_SERVER['HTTP_HOST'] ?? 'localhost');
+    return ($https ? 'https' : 'http') . '://' . $host;
+}
+
+/** Parse '9:00 – 20:00' into ['09:00', '20:00'], or null if closed/empty. */
+function parse_hours(string $value): ?array
+{
+    if (!preg_match('/(\d{1,2}):(\d{2})\s*[–\-]\s*(\d{1,2}):(\d{2})/u', $value, $m)) {
+        return null;
+    }
+    return [sprintf('%02d:%s', $m[1], $m[2]), sprintf('%02d:%s', $m[3], $m[4])];
+}
+
+/** Schema.org openingHoursSpecification entries from config hours. */
+function opening_hours_schema(array $site): array
+{
+    $spec = [];
+    foreach ($site['hours'] as $day => $value) {
+        if ($range = parse_hours($value)) {
+            $spec[] = ['@type' => 'OpeningHoursSpecification', 'dayOfWeek' => $day, 'opens' => $range[0], 'closes' => $range[1]];
+        }
+    }
+    return $spec;
+}
+
+/** Open/closed status for right now (London time), or null if hours unknown. */
+function open_status(array $site): ?array
+{
+    if (!has_hours($site)) {
+        return null;
+    }
+    $now   = new DateTimeImmutable('now');
+    $today = $site['hours'][$now->format('l')] ?? '';
+    $range = parse_hours($today);
+    $time  = $now->format('H:i');
+    if ($range && $time >= $range[0] && $time < $range[1]) {
+        return ['open' => true, 'text' => 'Open now until ' . ltrim($range[1], '0')];
+    }
+    // Find the next opening time.
+    for ($i = ($range && $time < $range[0]) ? 0 : 1; $i <= 7; $i++) {
+        $day = $now->modify("+{$i} day");
+        if ($next = parse_hours($site['hours'][$day->format('l')] ?? '')) {
+            $when = $i === 0 ? 'today' : ($i === 1 ? 'tomorrow' : $day->format('l'));
+            return ['open' => false, 'text' => 'Closed, opens ' . $when . ' at ' . ltrim($next[0], '0')];
+        }
+    }
+    return ['open' => false, 'text' => 'Closed'];
+}
+
+/** width/height attributes for a local image, to prevent layout shift. */
+function img_size(string $path): string
+{
+    $file = __DIR__ . '/..' . $path;
+    $size = is_file($file) ? @getimagesize($file) : false;
+    return $size ? sprintf(' width="%d" height="%d"', $size[0], $size[1]) : '';
+}

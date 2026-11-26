@@ -1,24 +1,47 @@
 <?php
 /** @var array $site @var string $pageTitle @var string $pageDescription @var string $bodyClass */
-$pageTitle       = $pageTitle ?? $site['name'] . ' | Barber shop in ' . $site['area'] . ', ' . $site['postcode'];
-$pageDescription = $pageDescription ?? $site['name'] . ' is a men\'s barber shop at ' . full_address($site) . '. Haircuts, skin fades and beard trims in ' . $site['area'] . '.';
+$base            = base_url();
+$path            = strtok($_SERVER['REQUEST_URI'] ?? '/', '?#') ?: '/';
+$canonical       = $base . ($path === '/index.php' ? '/' : $path);
+$pageTitle       = $pageTitle ?? $site['name'] . ' | Barber in ' . $site['area'] . ', London ' . explode(' ', $site['postcode'])[0];
+$pageDescription = $pageDescription ?? $site['name'] . ' is a men\'s barber shop at ' . full_address($site) . '. Haircuts, skin fades, beard trims, head shaves and hot towel shaves in ' . $site['area'] . '.' . ($site['phone'] !== '' ? ' Call ' . $site['phone'] . '.' : '');
 $bodyClass       = $bodyClass ?? '';
+$noindex         = $noindex ?? false;
+$sameAs = array_values(array_filter([$site['instagram'], $site['tiktok'], $site['facebook'] ?? '']));
 $schema = [
-    '@context' => 'https://schema.org',
-    '@type'    => 'BarberShop',
-    'name'     => $site['name'],
-    'image'    => '/images/hero.webp',
-    'address'  => [
+    '@context'  => 'https://schema.org',
+    '@type'     => 'BarberShop',
+    '@id'       => $base . '/#shop',
+    'name'      => $site['name'],
+    'url'       => $base . '/',
+    'logo'      => $base . '/images/logo-dark.png',
+    'image'     => [$base . '/images/hero.webp', $base . '/images/chair.webp'],
+    'description' => $site['name'] . ' is a men\'s barber shop on Streatham High Road in ' . $site['area'] . ', south London.',
+    'address'   => [
         '@type' => 'PostalAddress',
         'streetAddress'   => $site['street'],
         'addressLocality' => $site['city'],
+        'addressRegion'   => 'Greater London',
         'postalCode'      => $site['postcode'],
         'addressCountry'  => 'GB',
     ],
-    'geo'    => ['@type' => 'GeoCoordinates', 'latitude' => $site['lat'], 'longitude' => $site['lng']],
-    'hasMap' => $site['maps_url'],
+    'geo'        => ['@type' => 'GeoCoordinates', 'latitude' => $site['lat'], 'longitude' => $site['lng']],
+    'hasMap'     => $site['maps_url'],
+    'areaServed' => [$site['area'], 'Streatham Hill', 'Brixton', 'Tooting', 'Norbury', 'Balham'],
+    'hasOfferCatalog' => [
+        '@type' => 'OfferCatalog',
+        'name'  => 'Barber services',
+        'itemListElement' => array_map(static fn ($s) => array_filter([
+            '@type' => 'Offer',
+            'itemOffered' => ['@type' => 'Service', 'name' => $s['name'], 'description' => $s['text']],
+            'price' => $s['price'] !== '' ? preg_replace('/[^0-9.]/', '', $s['price']) : null,
+            'priceCurrency' => $s['price'] !== '' ? 'GBP' : null,
+        ]), $site['services']),
+    ],
 ];
-if ($site['phone'] !== '') { $schema['telephone'] = $site['phone']; }
+if ($site['phone'] !== '') { $schema['telephone'] = '+44' . ltrim(preg_replace('/\D/', '', $site['phone']), '0'); }
+if ($hoursSchema = opening_hours_schema($site)) { $schema['openingHoursSpecification'] = $hoursSchema; }
+if ($sameAs) { $schema['sameAs'] = $sameAs; }
 ?>
 <!doctype html>
 <html lang="en-GB">
@@ -27,11 +50,22 @@ if ($site['phone'] !== '') { $schema['telephone'] = $site['phone']; }
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title><?= e($pageTitle) ?></title>
 <meta name="description" content="<?= e($pageDescription) ?>">
+<?php if ($noindex): ?><meta name="robots" content="noindex"><?php else: ?><meta name="robots" content="index, follow, max-image-preview:large"><?php endif; ?>
+<link rel="canonical" href="<?= e($canonical) ?>">
 <meta name="theme-color" content="#16181b">
+<meta name="geo.region" content="GB-LBH">
+<meta name="geo.placename" content="<?= e($site['area'] . ', London') ?>">
+<meta name="geo.position" content="<?= e($site['lat'] . ';' . $site['lng']) ?>">
 <meta property="og:type" content="website">
-<meta property="og:title" content="<?= e($site['name'] . ', ' . $site['area']) ?>">
+<meta property="og:site_name" content="<?= e($site['name']) ?>">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="<?= e($canonical) ?>">
+<meta property="og:title" content="<?= e($pageTitle) ?>">
 <meta property="og:description" content="<?= e($pageDescription) ?>">
-<meta property="og:image" content="/images/hero.webp">
+<meta property="og:image" content="<?= e($base) ?>/images/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>

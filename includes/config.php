@@ -21,6 +21,7 @@ return [
     'booking_url' => '',
     'instagram'   => '',
     'tiktok'      => '',
+    'facebook'    => '',
 
     // Opening hours. Example: 'Monday' => '9:00 – 19:00', 'Sunday' => 'Closed'.
     // If every day is empty, the hours table is hidden.
@@ -40,8 +41,10 @@ return [
         ['name' => 'Skin fade',     'price' => '', 'image' => 'fade',    'text' => 'Taken down to the skin and blended clean into the length on top.'],
         ['name' => 'Beard trim',    'price' => '', 'image' => 'beard',   'text' => 'Shaped, lined up and tidied to suit your face.'],
         ['name' => 'Line-up',       'price' => '', 'image' => 'lineup',  'text' => 'Sharp edges on the hairline and neck between full cuts.'],
+        ['name' => 'Head shave',      'price' => '', 'image' => 'headshave', 'text' => 'A clean, close shave all over the head with a smooth finish.'],
+        ['name' => 'Hot towel shave', 'price' => '', 'image' => 'hottowel',  'text' => 'Warm towels, rich lather and a close razor shave.'],
         ['name' => "Kids' haircut", 'price' => '', 'image' => 'kids',    'text' => 'Cuts for younger customers, done with patience.'],
     ],
 
-    'gallery' => ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8'],
+    'gallery' => ['g1', 'g2', 'g3', 'g4', 'g5', 'g7'],
 ];

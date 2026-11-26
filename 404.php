@@ -4,6 +4,7 @@ require __DIR__ . '/includes/functions.php';
 http_response_code(404);
 $pageTitle = 'Page not found | ' . $site['name'];
 $bodyClass = 'page';
+$noindex = true;
 require __DIR__ . '/includes/header.php';
 ?>
 <main id="main" class="page-main">

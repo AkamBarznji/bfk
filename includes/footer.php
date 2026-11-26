@@ -18,10 +18,11 @@
         <?php if ($site['email'] !== ''): ?><p><a href="/#contact">Send a message</a></p><?php endif; ?>
       </div>
       <?php endif; ?>
-      <?php if ($site['instagram'] !== '' || $site['tiktok'] !== ''): ?>
+      <?php if ($site['instagram'] !== '' || $site['tiktok'] !== '' || ($site['facebook'] ?? '') !== ''): ?>
       <div>
         <h2>Follow</h2>
         <?php if ($site['instagram'] !== ''): ?><p><a href="<?= e($site['instagram']) ?>" rel="noopener">Instagram</a></p><?php endif; ?>
+        <?php if (($site['facebook'] ?? '') !== ''): ?><p><a href="<?= e($site['facebook']) ?>" rel="noopener">Facebook</a></p><?php endif; ?>
         <?php if ($site['tiktok'] !== ''): ?><p><a href="<?= e($site['tiktok']) ?>" rel="noopener">TikTok</a></p><?php endif; ?>
       </div>
       <?php endif; ?>

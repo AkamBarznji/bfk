@@ -26,11 +26,14 @@ $err = $contact['errors'];
     </picture>
     <div class="wrap hero-inner">
       <p class="hero-place"><?= e($site['street']) ?>, <?= e($site['area']) ?></p>
+      <?php if ($status = open_status($site)): ?>
+        <p class="open-status <?= $status['open'] ? 'is-open' : 'is-closed' ?>"><span class="open-dot" aria-hidden="true"></span><?= e($status['text']) ?></p>
+      <?php endif; ?>
       <h1 id="hero-title" class="hero-title">
         <span class="hero-line">iStyle</span>
         <span class="hero-line">Barbers</span>
       </h1>
-      <p class="hero-lede">Sharp cuts, clean fades and proper beard work on Streatham High Road.</p>
+      <p class="hero-lede">Barber in Streatham, south London. Sharp cuts, clean fades and proper beard work on Streatham High Road.</p>
       <div class="actions">
         <?php if ($site['booking_url'] !== ''): ?>
           <a class="button" href="<?= e($site['booking_url']) ?>" rel="noopener">Book an appointment</a>
@@ -54,7 +57,7 @@ $err = $contact['errors'];
   <section class="intro" aria-labelledby="intro-title">
     <div class="wrap intro-inner">
       <figure class="intro-photo">
-        <img src="/images/chair.webp" width="1400" height="933" alt="A leather barber chair" loading="lazy">
+        <img src="/images/chair.webp" width="1400" height="933" alt="Leather barber chair" loading="lazy">
       </figure>
       <div class="intro-copy">
         <h2 id="intro-title">Your barber on the High Road.</h2>
@@ -71,7 +74,10 @@ $err = $contact['errors'];
   <section id="services" class="services" aria-labelledby="services-title">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="services-title">Services</h2>
+        <div>
+          <h2 id="services-title">Services</h2>
+          <p class="services-intro">Men's and boys' haircuts, fades, beard trims and shaves at 71 Streatham High Road.</p>
+        </div>
         <?php if (!array_filter(array_column($site['services'], 'price'))): ?>
           <p>Ask in the shop for today's prices.</p>
         <?php endif; ?>
@@ -79,7 +85,7 @@ $err = $contact['errors'];
       <ul class="service-grid">
         <?php foreach ($site['services'] as $service): ?>
           <li class="service-card">
-            <img src="/images/<?= e($service['image']) ?>.webp" alt="" loading="lazy">
+            <img src="/images/<?= e($service['image']) ?>.webp"<?= img_size('/images/' . $service['image'] . '.webp') ?> alt="<?= e($service['name']) ?> at a barber shop" loading="lazy">
             <div class="service-body">
               <div class="service-top">
                 <h3><?= e($service['name']) ?></h3>
@@ -102,7 +108,7 @@ $err = $contact['errors'];
       <div class="gallery-grid">
         <?php foreach ($site['gallery'] as $i => $photo): ?>
           <button class="gallery-item" type="button" data-full="/images/<?= e($photo) ?>.webp" aria-label="Open photo <?= $i + 1 ?>">
-            <img src="/images/<?= e($photo) ?>.webp" alt="" loading="lazy">
+            <img src="/images/<?= e($photo) ?>.webp"<?= img_size('/images/' . $photo . '.webp') ?> alt="" loading="lazy">
           </button>
         <?php endforeach; ?>
       </div>
